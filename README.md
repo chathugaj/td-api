@@ -6,7 +6,7 @@ API design of the service.
 
 ### User profile API
 This section show the user profile API endpoints with the HTTP method, intended operation and the target view in a possible
-user interface.
+user interface. Reference: Code Institute [drf-ap](https://github.com/Code-Institute-Solutions/drf-api)
 
 | HTTP   | URI           | Operation            | View    | Comment                     |
 |--------|---------------|----------------------|---------|-----------------------------|
