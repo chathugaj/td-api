@@ -5,11 +5,14 @@ from cloudinary.models import CloudinaryField
 
 
 class Profile(models.Model):
+    """
+    Represents a user profile in the system
+    """
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=255, blank=True)
-    image = CloudinaryField('image', )
+    image = models.ImageField('images/', default='default_profile_jmcjrv')
 
     class Meta:
         ordering = ['-created_at']
