@@ -6,7 +6,7 @@ class Post(models.Model):
     """
     Represents a blog post.
     """
-    owner = models.OneToOneField(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
