@@ -14,12 +14,22 @@ class PostList(APIView):
 
     @staticmethod
     def get(request):
+        """
+        Get the list of posts
+        :param request: HTTP request
+        :return: List of JSON objects with posts
+        """
         posts = Post.objects.all()
         serializer = PostSerializer(posts, many=True, context={'request': request})
         return Response(serializer.data)
 
     @staticmethod
     def post(request):
+        """
+        Create a post
+        :param request: HTTP request with JSON object
+        :return: JSON post with creation details
+        """
         serializer = PostSerializer(
             data=request.data, context={'request': request}
         )
@@ -34,6 +44,9 @@ class PostList(APIView):
 
 
 class PostDetail(APIView):
+    """
+    Handles a specific post with a given id
+    """
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = PostSerializer
 
@@ -46,6 +59,12 @@ class PostDetail(APIView):
             raise Http404
 
     def get(self, request, pk):
+        """
+        Get a post for the specified id 'pk'
+        :param request: HTTP request
+        :param pk: Post id
+        :return: Post details JSON object
+        """
         post = self.get_object(pk)
         serializer = PostSerializer(
             post, context={'request': request}
@@ -53,6 +72,12 @@ class PostDetail(APIView):
         return Response(serializer.data)
 
     def put(self, request, pk):
+        """
+        Update details of the post specified by the id
+        :param request: HTTP request with JSON payload
+        :param pk: Post id
+        :return: Post details JSON object
+        """
         post = self.get_object(pk)
         serializer = PostSerializer(
             post, data=request.data, context={'request': request}
@@ -65,6 +90,12 @@ class PostDetail(APIView):
         )
 
     def delete(self, request, pk):
+        """
+        Delete the post object specified by the id
+        :param request: HTTP request
+        :param pk: Post id
+        :return:
+        """
         post = self.get_object(pk)
         post.delete()
         return Response(
