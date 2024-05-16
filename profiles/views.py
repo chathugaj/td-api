@@ -21,7 +21,7 @@ class ProfileList(APIView):
 
 class ProfileDetail(APIView):
     """
-    Returns the details of the profile given the profile id
+    Handles API calls related to a specific profile id
     """
     serializer_class = ProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
@@ -35,11 +35,23 @@ class ProfileDetail(APIView):
             raise Http404
 
     def get(self, request, pk):
+        """
+        Returns profile details object represented by the 'pk'
+        :param request: HTTP request
+        :param pk: Profile id
+        :return: Profile details
+        """
         profile = self.get_object(pk)
         serializer = ProfileSerializer(profile, context={'request': request})
         return Response(serializer.data)
 
     def put(self, request, pk):
+        """
+        Updates the profile details represented by 'pk'. Returns updated profile details.
+        :param request: Http request with the Profile JSON
+        :param pk: Profile id
+        :return: Updated profile JSON
+        """
         profile = self.get_object(pk)
         serializer = ProfileSerializer(profile, data=request.data, context={'request': request})
         if serializer.is_valid():
