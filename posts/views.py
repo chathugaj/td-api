@@ -1,5 +1,5 @@
 from django.http import Http404
-from rest_framework import status
+from rest_framework import status, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Post
@@ -11,6 +11,8 @@ class PostList(APIView):
     """
     Returns a list of posts
     """
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     @staticmethod
     def get(request):
@@ -47,8 +49,8 @@ class PostDetail(APIView):
     """
     Handles a specific post with a given id
     """
-    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = PostSerializer
+    permission_classes = [IsOwnerOrReadOnly]
 
     def get_object(self, pk):
         try:
