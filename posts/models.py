@@ -12,7 +12,7 @@ class Post(models.Model):
     is_published = models.BooleanField(default=False)
     title = models.CharField(max_length=255)
     sub_title = models.CharField(max_length=100, blank=True)
-    slug = models.CharField(max_length=100, unique=True)
+    slug = models.CharField(max_length=100, blank=True)
     banner = models.ImageField('images/', default='default_post_zzidm6')
     body = models.TextField(max_length=5000, blank=True)
     gmap_location_tag = models.CharField(max_length=100, blank=True)
