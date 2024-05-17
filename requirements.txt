@@ -20,12 +20,10 @@ djangorestframework==3.15.1
 djangorestframework-simplejwt==5.3.1
 docopt==0.6.2
 filelock==3.13.1
-future @ file:///System/Volumes/Data/SWE/Apps/DT/BuildRoots/BuildRoot7/ActiveBuildRoot/Library/Caches/com.apple.xbs/Sources/python3/python3-133.100.1.1/future-0.18.2-py3-none-any.whl
 google-auth==2.22.0
 google-auth-oauthlib==1.0.0
 gspread==5.10.0
 idna==3.6
-macholib @ file:///System/Volumes/Data/SWE/Apps/DT/BuildRoots/BuildRoot7/ActiveBuildRoot/Library/Caches/com.apple.xbs/Sources/python3/python3-133.100.1.1/macholib-1.15.2-py2.py3-none-any.whl
 oauthlib==3.2.2
 pillow==10.3.0
 pipreqs==0.4.13
