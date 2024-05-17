@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
+
+import rest_framework.renderers
 
 if os.path.exists('env.py'):
     import env
@@ -30,8 +33,15 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication'
         if 'DEV' in os.environ
         else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
-    )]
+    )],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 2,
+    'DATETIME_FORMAT': '%d %b %Y'
 }
+if 'DEV' not in os.environ:
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
+        'rest_framework.renderers.JSONRenderer'
+    ]
 
 REST_USE_JWT = True
 JWT_AUTH_SECURE = True
@@ -46,12 +56,15 @@ REST_AUTH_SERIALIZERS = {
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@78)8=8(2mjn9p-#l52%0%l9@tv8%)dm%g#zn%0n!=k1obvnh#'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if 'DEV' not in os.environ:
+    DEBUG = False
+else:
+    DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '.herokuapp.com', ]
 
 # Application definition
 
@@ -113,12 +126,17 @@ WSGI_APPLICATION = 'td_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if 'DEV' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
