@@ -3,6 +3,8 @@
 ## DB Design
 ![DB design diagram](docs/db_design.png)
 
+![Contacts model](docs/contacts_model.png)
+
 ## API Design
 This section shows the Overall REST API design in a tabular format. This provides an easier reference to the API and the
 API design of the service.
