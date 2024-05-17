@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from .models import Post
 from .serializers import PostSerializer
 from td_api.permissions import IsOwnerOrReadOnly
+from td_api import settings
 
 
 class PostList(APIView):

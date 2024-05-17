@@ -62,7 +62,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['localhost', 'td-api-6cc6df0392bc.herokuapp.com', ]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'td-api-6cc6df0392bc.herokuapp.com', ]
 
 # Application definition
 
@@ -109,7 +109,8 @@ if 'CLIENT_ORIGIN' in os.environ:
     ]
 else:
     CORS_ALLOWED_ORIGIN_REGEXES = [
-        r"^https://.*\.localhost\$",
+        r"^http://.*\.localhost\$",
+        r"^http://127.0.0.1/"
     ]
 
 CORS_ALLOW_CREDENTIALS = True
