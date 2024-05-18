@@ -1,27 +1,23 @@
-from rest_framework import serializers
-from .models import Like
 from django.db import IntegrityError
+from rest_framework import serializers
+from likes.models import Like
+
 
 class LikeSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the Like
+    Create handles unique constraint on user and post
+    """
     owner = serializers.ReadOnlyField(source='owner.username')
-    post = serializers.ReadOnlyField(source='post.id')
-    is_owner = serializers.SerializerMethodField()
-
-    def get_is_owner(self, obj):
-        request = self.context['request']
-        return request.user == obj.owner
 
     class Meta:
         model = Like
-        fields = [
-            'id', 'owner', 'is_owner', 'post', 'created_at'
-        ]
+        fields = ['id', 'created_at', 'owner', 'post']
 
     def create(self, validated_data):
         try:
             return super().create(validated_data)
         except IntegrityError:
             raise serializers.ValidationError({
-                'detail': 'Possible duplicates'
+                'detail': 'possible duplicate'
             })
-

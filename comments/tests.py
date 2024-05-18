@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 
-from posts.models import Post
+from posts  .models import Post
 from .models import Comment
 from rest_framework import status
 from rest_framework.test import APITestCase
