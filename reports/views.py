@@ -7,19 +7,32 @@ from td_api.permissions import IsOwner
 
 class ReportList(generics.ListCreateAPIView):
     """
-        Facilitates the list and report API endpoints
-        """
+    Facilitates the list and report API endpoints
+    """
     serializer_class = ReportSerializer
-    permission_classes = [permissions.IsAdminUser, IsOwner]
+    permission_classes = [IsOwner|permissions.IsAdminUser]
     queryset = Report.objects.all()
 
     def perform_create(self, serializer):
         """Creates a report"""
-        serializer.save(reporter=self.request.user)
+        serializer.save(owner=self.request.user)
+
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Report.objects.all()
+        else:
+            return Report.objects.all().filter(owner=self.request.user)
 
 
 class ReportDetail(generics.RetrieveUpdateAPIView):
     """Facilitates get, update a specific report"""
-    permission_classes = [IsOwner]
+    permission_classes = [permissions.IsAuthenticated|permissions.IsAdminUser]
     serializer_class = ReportSerializer
+    http_method_names = ['get', 'put']
     queryset = Report.objects.all()
+
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Report.objects.all()
+        else:
+            return Report.objects.all().filter(owner=self.request.user)

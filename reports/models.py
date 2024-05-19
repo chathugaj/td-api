@@ -6,7 +6,7 @@ class Report(models.Model):
     """
     Represents a user created report on content or a user
     """
-    reporter = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     reason = models.CharField(max_length=150, blank=True)
@@ -16,4 +16,4 @@ class Report(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.reason}' by {self.reporter}"
+        return f"{self.reason}' by {self.owner}"
