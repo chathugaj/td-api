@@ -49,6 +49,11 @@ JWT_AUTH_COOKIE = 'td-app-auth'
 JWT_AUTH_REFRESH_COOKIE = 'td-refresh-token'
 JWT_AUTH_SAMESITE = 'None'
 
+AUTHENTICATION_BACKENDS = [
+    'allauth.account.auth_backends.AuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'td_api.serializers.AuthUserSerializer'
 }
@@ -66,45 +71,6 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'td-api-6cc6df0392bc.herokuapp.com', 
 
 # Application definition
 
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'cloudinary_storage',
-    'cloudinary',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'dj_rest_auth',
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'dj_rest_auth.registration',
-    'corsheaders',
-
-    'profiles',
-    'posts',
-    'comments',
-    'likes',
-    'reports'
-]
-
-SITE_ID = 1
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware'
-]
 
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
@@ -116,6 +82,43 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
     ]
 
 CORS_ALLOW_CREDENTIALS = True
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+    'corsheaders',
+
+    'profiles',
+    'posts',
+    'comments',
+    'likes',
+    'reports'
+]
+SITE_ID = 1
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
+]
 
 ROOT_URLCONF = 'td_api.urls'
 
