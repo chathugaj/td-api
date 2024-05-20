@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+from datetime import timedelta
 from pathlib import Path
 import os
 import dj_database_url
@@ -32,9 +32,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication'
-        if 'DEV' in os.environ
-        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+        # 'rest_framework.authentication.SessionAuthentication'
+        # if 'DEV' in os.environ
+        # else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication'
     ),
     'DATETIME_FORMAT': '%d %b %Y'
 }
@@ -49,6 +50,11 @@ REST_AUTH = {
     'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
     'JWT_AUTH_HTTPONLY': False
 }
+
+# SIMPLE_JWT = {
+#     "ACCESS_TOKEN_LIFETIME": timedelta(seconds=15),
+#     "REFRESH_TOKEN_LIFETIME": timedelta(minutes=30),
+# }
 
 AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -77,12 +83,21 @@ if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
         os.environ.get('CLIENT_ORIGIN')
     ]
+    CSRF_TRUSTED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN')
+    ]
 if 'CLIENT_ORIGIN_DEV' in os.environ:
     CORS_ALLOWED_ORIGINS = [
         os.environ.get('CLIENT_ORIGIN_DEV')
     ]
+    CSRF_TRUSTED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN_DEV')
+    ]
 
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    '*'
+]
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
