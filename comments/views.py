@@ -3,6 +3,7 @@ from rest_framework import generics, permissions
 from comments.models import Comment
 from comments.serializers import CommentSerializer, CommentDetailSerializer
 from td_api.permissions import IsOwnerOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class CommentList(generics.ListCreateAPIView):
@@ -12,6 +13,12 @@ class CommentList(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Comment.objects.all()
+    filter_backends = [
+        DjangoFilterBackend
+    ]
+    filterset_fields = [
+        'post',
+    ]
 
     def perform_create(self, serializer):
         """Creates a comment"""
