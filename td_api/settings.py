@@ -35,7 +35,8 @@ REST_FRAMEWORK = {
         # 'rest_framework.authentication.SessionAuthentication'
         # if 'DEV' in os.environ
         # else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication'
+        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication'
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
     ),
     'DATETIME_FORMAT': '%d %b %Y'
 }
@@ -118,10 +119,11 @@ INSTALLED_APPS = [
     'cloudinary',
     'rest_framework',
     'rest_framework.authtoken',
+    'dj_rest_auth',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'dj_rest_auth',
+    'allauth.socialaccount',
     'dj_rest_auth.registration',
     'corsheaders',
     'django_filters',

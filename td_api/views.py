@@ -11,6 +11,26 @@ def root_route(request):
         "message": "Welcome to the travler's diary API"
     })
 
+
+from django.contrib.auth.models import User
+from rest_framework import routers, serializers, viewsets, permissions
+
+
+# Serializers define the API representation.
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['url', 'username', 'email', 'is_staff', 'is_superuser']
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
 # @api_view(['POST'])
 # def logout_route(request):
 #     response = Response()

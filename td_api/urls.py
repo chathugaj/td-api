@@ -16,18 +16,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import root_route
+from rest_framework import routers
+
+from .views import root_route, UserViewSet
+
+from django.urls import path, include
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
 
 urlpatterns = [
-    path('', root_route),
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls')),
-    # path('dj-rest-auth/logout/', logout_route),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
-    path('', include('profiles.urls')),
+    # path('dj-rest-auth/logout/', logout_route),
+    # path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    # path('', include('profiles.urls')),
     path('', include('posts.urls')),
-    path('', include('comments.urls')),
-    path('', include('likes.urls')),
-    path('', include('reports.urls'))
+    # path('', include('comments.urls')),
+    # path('', include('likes.urls')),
+    # path('', include('reports.urls'))
 ]
