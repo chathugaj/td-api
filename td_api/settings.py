@@ -50,6 +50,7 @@ REST_AUTH = {
     'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
     'JWT_AUTH_HTTPONLY': False,
     'JWT_AUTH_SECURE': True,
+    'JWT_AUTH_SAMESITE': 'None',
 }
 
 # SIMPLE_JWT = {
