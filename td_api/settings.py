@@ -32,10 +32,6 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        # 'rest_framework.authentication.SessionAuthentication'
-        # if 'DEV' in os.environ
-        # else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
-        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication'
         'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
     ),
     'DATETIME_FORMAT': '%d %b %Y'
@@ -50,21 +46,15 @@ REST_AUTH = {
     'JWT_AUTH_COOKIE': 'my-app-auth',
     'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
     'JWT_AUTH_HTTPONLY': False,
+    'USER_DETAILS_SERIALIZER': 'td_api.serializers.UserSerializer'
 }
 
-# SIMPLE_JWT = {
-#     "ACCESS_TOKEN_LIFETIME": timedelta(seconds=15),
-#     "REFRESH_TOKEN_LIFETIME": timedelta(minutes=30),
-# }
+
 
 AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
-
-REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'td_api.serializers.AuthUserSerializer'
-}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
