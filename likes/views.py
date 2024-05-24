@@ -1,5 +1,6 @@
 from rest_framework import generics, permissions
 
+from td_api.pagination import StandardResultsSetPagination
 from .models import Like
 from .serializers import LikeSerializer
 from td_api.permissions import IsOwnerOrReadOnly
@@ -11,6 +12,7 @@ class LikeList(generics.ListCreateAPIView):
     """
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = LikeSerializer
+    pagination_class = StandardResultsSetPagination
     queryset = Like.objects.all()
 
     def perform_create(self, serializer):
@@ -21,6 +23,6 @@ class LikeDetail(generics.RetrieveDestroyAPIView):
     """
     Get a like or delete a like by id
     """
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly|permissions.IsAdminUser]
     serializer_class = LikeSerializer
     queryset = Like.objects.all()

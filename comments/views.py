@@ -2,6 +2,7 @@ from rest_framework import generics, permissions
 
 from comments.models import Comment
 from comments.serializers import CommentSerializer, CommentDetailSerializer
+from td_api.pagination import StandardResultsSetPagination
 from td_api.permissions import IsOwnerOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -13,6 +14,7 @@ class CommentList(generics.ListCreateAPIView):
     serializer_class = CommentSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Comment.objects.all()
+    pagination_class = StandardResultsSetPagination
     filter_backends = [
         DjangoFilterBackend
     ]
@@ -28,6 +30,6 @@ class CommentList(generics.ListCreateAPIView):
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     """Facilitates get, update, delete a specific comments"""
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly|permissions.IsAdminUser]
     serializer_class = CommentDetailSerializer
     queryset = Comment.objects.all()

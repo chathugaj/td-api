@@ -3,6 +3,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, filters
 from rest_framework.views import APIView
 
+from td_api.pagination import StandardResultsSetPagination
 from td_api.permissions import IsOwnerOrReadOnly
 from .models import Profile
 from .serializers import ProfileSerializer
@@ -17,6 +18,7 @@ class ProfileList(generics.ListAPIView):
         post_count = Count('owner__post', distinct=True)
     ).order_by('-created_at')
     serializer_class = ProfileSerializer
+    pagination_class = StandardResultsSetPagination
     filter_backends = [
         filters.OrderingFilter,
         DjangoFilterBackend

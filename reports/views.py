@@ -2,6 +2,7 @@ from rest_framework import generics, permissions
 
 from reports.models import Report
 from reports.serializers import ReportSerializer
+from td_api.pagination import StandardResultsSetPagination
 from td_api.permissions import IsOwner
 
 
@@ -11,6 +12,7 @@ class ReportList(generics.ListCreateAPIView):
     """
     serializer_class = ReportSerializer
     permission_classes = [IsOwner|permissions.IsAdminUser]
+    pagination_class = StandardResultsSetPagination
     queryset = Report.objects.all()
 
     def perform_create(self, serializer):
