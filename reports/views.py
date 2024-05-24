@@ -17,13 +17,13 @@ class ReportList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         """Creates a report"""
-        serializer.save(owner=self.request.user)
+        serializer.save(owner=self.request.user.id)
 
     def get_queryset(self):
         if self.request.user.is_superuser:
             return Report.objects.all()
         else:
-            return Report.objects.all().filter(owner=self.request.user)
+            return Report.objects.all().filter(owner=self.request.user.id)
 
 
 class ReportDetail(generics.RetrieveUpdateAPIView):
@@ -37,4 +37,4 @@ class ReportDetail(generics.RetrieveUpdateAPIView):
         if self.request.user.is_superuser:
             return Report.objects.all()
         else:
-            return Report.objects.all().filter(owner=self.request.user)
+            return Report.objects.all().filter(owner=self.request.user.id)

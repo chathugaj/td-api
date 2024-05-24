@@ -2,4 +2,4 @@ from rest_framework.pagination import LimitOffsetPagination, PageNumberPaginatio
 
 
 class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 2
+    page_size = 10
