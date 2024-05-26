@@ -334,6 +334,8 @@ Most commonly, forks are used to either propose changes to someone else's projec
 - This will create a duplicate of the full project in your GitHub Repository.
 
 ## Credits
+Django rest framework code references: https://github.com/Code-Institute-Solutions/drf-api
+
 
 ### Content:
 <br>
