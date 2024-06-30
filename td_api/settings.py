@@ -64,7 +64,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'td-api-6cc6df0392bc.herokuapp.com', ]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'td-api-6cc6df0392bc.herokuapp.com', 'travellers-diary-0c3253b73ff3.herokuapp.com']
 
 # Application definition
 
