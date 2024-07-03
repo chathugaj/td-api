@@ -17,7 +17,7 @@ class ReportList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         """Creates a report"""
-        serializer.save(owner=self.request.user.id)
+        serializer.save(owner=self.request.user)
 
     def get_queryset(self):
         if self.request.user.is_superuser:
