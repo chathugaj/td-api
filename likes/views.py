@@ -4,8 +4,10 @@ from td_api.pagination import StandardResultsSetPagination
 from .models import Like
 from .serializers import LikeSerializer
 from td_api.permissions import IsOwnerOrReadOnly
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 
-
+@method_decorator(csrf_exempt, name='dispatch')
 class LikeList(generics.ListCreateAPIView):
     """
     Facilitates list and create for likes
