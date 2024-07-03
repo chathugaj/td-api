@@ -69,7 +69,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'td-api-6cc6df0392bc.herokuapp.com', 
 
 # Application definition
 
-
+CSRF_COOKIE_DOMAIN = os.getenv('CSRF_COOKIE_DOMAIN')
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
         os.environ.get('CLIENT_ORIGIN')
