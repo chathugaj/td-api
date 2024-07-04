@@ -269,6 +269,7 @@ https://dj-rest-auth.readthedocs.io/en/latest/
 
 ## Testing
 
+Unit tests were added to the modules.
 
 Testing was performed manually after creating a test matrix
 ![Text matrix](./docs/tests.png)
