@@ -47,10 +47,10 @@ This section shows the API design for the comments API endpoints with the HTTP m
 - Authenticated users can create new comments for any post and edit or delete their own comments.
 - Any user can view published comments
 
-| HTTP   | URI                     | Operation                        | View         | Comment |
-|--------|-------------------------|----------------------------------|--------------|---------|
-| GET    | /posts/:id/comments     | View all the comments for a post | Article View |         |   
-| POST   | /posts/:id/comments     | Create a comment for a post      | Article View |         |
-| PUT    | /posts/:id/comments/:id | Edit a comment of a post         | Article View |         |  
-| DELETE | /posts/:id/comments/:id | Delete a comment of a post       | Article View |         |
+| HTTP   | URI            | Operation                        | View         | Comment |
+|--------|----------------|----------------------------------|--------------|---------|
+| GET    | /comments/:id  | View all the comments for a post | Article View |         |   
+| POST   | /comments/:id  | Create a comment for a post      | Article View |         |
+| PUT    | /comments/:id  | Edit a comment of a post         | Article View |         |  
+| DELETE | /comments/:id/ | Delete a comment of a post       | Article View |         |
 
