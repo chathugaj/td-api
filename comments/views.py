@@ -1,10 +1,10 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, permissions
 
 from comments.models import Comment
 from comments.serializers import CommentSerializer, CommentDetailSerializer
 from td_api.pagination import StandardResultsSetPagination
 from td_api.permissions import IsOwnerOrReadOnly
-from django_filters.rest_framework import DjangoFilterBackend
 
 
 class CommentList(generics.ListCreateAPIView):
