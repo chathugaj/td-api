@@ -269,24 +269,9 @@ https://dj-rest-auth.readthedocs.io/en/latest/
 
 ## Testing
 
-Unit tests in posts app
 
-**Validator Results**
-[TO DO]
-
-![comments]()
-
-![contacts]()
-
-![likes]()
-
-![posts]()
-
-![profiles]()
-
-**Bugs and their fixes**
-
-[TO DO]
+Testing was performed manually after creating a test matrix
+![Text matrix](./docs/tests.png)
 
 
 <hr>
