@@ -86,7 +86,8 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
         os.environ.get('CLIENT_ORIGIN_DEV'),
         os.environ.get('CLIENT_ORIGIN')
     ]
-
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = [
     'Content-Type', 'Authorization', 'x-csrftoken', 'x-csrf-token'
