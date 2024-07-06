@@ -46,6 +46,8 @@ REST_AUTH = {
     'JWT_AUTH_COOKIE': 'my-app-auth',
     'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
     'JWT_AUTH_HTTPONLY': False,
+    'JWT_AUTH_SECURE': True,
+    'JWT_AUTH_SAMESITE': "None",
     'USER_DETAILS_SERIALIZER': 'td_api.serializers.UserSerializer'
 }
 
@@ -86,8 +88,17 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
         os.environ.get('CLIENT_ORIGIN_DEV'),
         os.environ.get('CLIENT_ORIGIN')
     ]
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+
+if 'SESSION_COOKIE_SECURE' in os.environ:
+    SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE')
+else:
+    SESSION_COOKIE_SECURE = True
+
+if 'CSRF_COOKIE_SECURE' in os.environ:
+    CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_COOKIE_SECURE')
+else:
+    CSRF_COOKIE_SECURE = True
+
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = [
     'Content-Type', 'Authorization', 'x-csrftoken', 'x-csrf-token'
