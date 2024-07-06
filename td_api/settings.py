@@ -89,6 +89,8 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
         os.environ.get('CLIENT_ORIGIN')
     ]
 
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
 if 'SESSION_COOKIE_SECURE' in os.environ:
     SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE')
 else:
