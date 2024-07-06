@@ -91,15 +91,15 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
 
 CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
-if 'SESSION_COOKIE_SECURE' in os.environ:
-    SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE')
-else:
-    SESSION_COOKIE_SECURE = True
-
-if 'CSRF_COOKIE_SECURE' in os.environ:
-    CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_COOKIE_SECURE')
-else:
-    CSRF_COOKIE_SECURE = True
+# if 'SESSION_COOKIE_SECURE' in os.environ:
+#     SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE')
+# else:
+#     SESSION_COOKIE_SECURE = True
+#
+# if 'CSRF_COOKIE_SECURE' in os.environ:
+#     CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_COOKIE_SECURE')
+# else:
+#     CSRF_COOKIE_SECURE = True
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = [
