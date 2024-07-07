@@ -72,13 +72,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['8000-chathugaj-tdapi-j602to2ehrx.ws.codeinstitute-ide.net', 'https://td-api-6cc6df0392bc.herokuapp.com' ]
 
-CORS_ALLOWED_ORIGINS = [
-    'https://3000-chathugaj-travellersdia-cqrz3r2c5j9.ws.codeinstitute-ide.net',
-]
+# CORS_ALLOWED_ORIGINS = [
+#     'https://3000-chathugaj-travellersdia-cqrz3r2c5j9.ws.codeinstitute-ide.net',
+# ]
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https://\w+\.ws\.codeinstitute-ide\.net$",
-    r"^https://\w+\.ws\.codeinstitute-ide\.net$",
+    r"^https://\w+\.herokuapp\.com$",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
