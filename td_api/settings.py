@@ -60,25 +60,29 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# REST_AUTH = {
-#     'USE_JWT': True,
-#     'JWT_AUTH_COOKIE': 'my-app-auth',
-#     'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
-#     'JWT_AUTH_HTTPONLY': False,
-#     'JWT_AUTH_SECURE': True,
-#     'JWT_AUTH_SAMESITE': "None",
-#     'USER_DETAILS_SERIALIZER': 'td_api.serializers.UserSerializer'
-# }
-
 
 ALLOWED_HOSTS = [
     '8000-chathugaj-tdapi-j602to2ehrx.ws.codeinstitute-ide.net',
     'td-api-6cc6df0392bc.herokuapp.com',
+    'localhost', '127.0.0.1', 
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    'https://3000-chathugaj-travellersdia-cqrz3r2c5j9.ws.codeinstitute-ide.net',
-]
+if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN')
+    ]
+    CSRF_TRUSTED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN')
+    ]
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN_DEV'),
+        os.environ.get('CLIENT_ORIGIN')
+    ]
+    CSRF_TRUSTED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN_DEV'),
+        os.environ.get('CLIENT_ORIGIN')
+    ]
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^https://\w+\.ws\.codeinstitute-ide\.net$",
