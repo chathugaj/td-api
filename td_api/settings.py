@@ -70,7 +70,10 @@ DEBUG = True
 # }
 
 
-ALLOWED_HOSTS = ['8000-chathugaj-tdapi-j602to2ehrx.ws.codeinstitute-ide.net', 'https://td-api-6cc6df0392bc.herokuapp.com' ]
+ALLOWED_HOSTS = [
+    '8000-chathugaj-tdapi-j602to2ehrx.ws.codeinstitute-ide.net',
+    'td-api-6cc6df0392bc.herokuapp.com',
+]
 
 # CORS_ALLOWED_ORIGINS = [
 #     'https://3000-chathugaj-travellersdia-cqrz3r2c5j9.ws.codeinstitute-ide.net',
