@@ -77,6 +77,7 @@ ALLOWED_HOSTS = [
 
 CORS_ALLOWED_ORIGINS = [
     'https://3000-chathugaj-travellersdia-cqrz3r2c5j9.ws.codeinstitute-ide.net',
+    'https://travellers-diary-0c3253b73ff3.herokuapp.com'
 ]
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
