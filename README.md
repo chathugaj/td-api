@@ -18,7 +18,7 @@ This project was developed using agile methodologies by delivering small feature
 
 All stories were assigned to epics, prioritized under the labels, Must have, should have, could have and assigned to sprints. "Must have" stories were completed first, "should haves" and then finally "could haves". 
 
-The Kanban board was created using Github projects and can be located [https://github.com/users/chathugaj/projects/3](https://github.com/users/chathugaj/projects/3) Github board link TO DO) and can be viewed to see more information on the project cards.Only user stories have acceptance critieria to define the certain excecution.
+The Kanban board was created using Github projects and can be located [https://github.com/users/chathugaj/projects/3](https://github.com/users/chathugaj/projects/3) and can be viewed to see more information on the project cards.Only user stories have acceptance critieria to define the certain excecution.
 ![Kanban board](./docs/kanban_project.png)
 
 
@@ -159,7 +159,7 @@ API design of the service.
 
 ### User profile API
 This section shows the user profile API endpoints with the HTTP method, intended operation and the target view in a possible
-user interface. Reference: Code Institute [drf-ap](https://github.com/Code-Institute-Solutions/drf-api)
+user interface. Reference: Code Institute [drf-api](https://github.com/Code-Institute-Solutions/drf-api)
 
 #### Security policy
 - Authenticated users can view any user profile and edit their own profile.
@@ -180,13 +180,13 @@ This section shows the API design for the posts API endpoints with the HTTP meth
 - Authenticated users can create new posts and edit or delete their own posts.
 - Any user can view published posts
 
-| HTTP   | URI        | Operation          | View              | Comment |
-|--------|------------|--------------------|-------------------|---------|
-| GET    | /posts     | View all the posts | List              |         |
-| POST   | /posts     | Create a post      | List              |         |
-| GET    | /posts/:id | Get post by id     | Article View,Edit |         |
-| PUT    | /posts/:id | Edit post by id    | Edit              |         |
-| DELETE | /posts/:id | Delete post by id  | Edit              |         |
+| HTTP   | URI        | Operation          | View              | Comment                   |
+|--------|------------|--------------------|-------------------|---------------------------|
+| GET    | /posts     | View all the posts | List              |                           |
+| POST   | /posts     | Create a post      | List              | Authenticated user        |
+| GET    | /posts/:id | Get post by id     | Article View,Edit |                           |
+| PUT    | /posts/:id | Edit post by id    | Edit              | Authenticated user        |
+| DELETE | /posts/:id | Delete post by id  | Edit              | Authenticated user        |
 
 ### Comments API
 This section shows the API design for the comments API endpoints with the HTTP methods.
@@ -195,12 +195,12 @@ This section shows the API design for the comments API endpoints with the HTTP m
 - Authenticated users can create new comments for any post and edit or delete their own comments.
 - Any user can view published comments
 
-| HTTP   | URI           | Operation                        | View         | Comment |
-|--------|---------------|----------------------------------|--------------|---------|
-| GET    | /comments/    | View all the comments for a post | Article View |         |   
-| POST   | /comments/:id | Create a comment for a post      | Article View |         |
-| PUT    | /comments/:id | Edit a comment of a post         | Article View |         |  
-| DELETE | /comments/:id | Delete a comment of a post       | Article View |         |
+| HTTP   | URI           | Operation                        | View         | Comment                  |
+|--------|---------------|----------------------------------|--------------|--------------------------|
+| GET    | /comments/    | View all the comments for a post | Article View |                          |   
+| POST   | /comments/:id | Create a comment for a post      | Article View | Authenticate user        |
+| PUT    | /comments/:id | Edit a comment of a post         | Article View | Authenticted user        |  
+| DELETE | /comments/:id | Delete a comment of a post       | Article View | Authenicated user        |
 
 
 ### Likes API
@@ -210,11 +210,11 @@ This section shows the API design for the Likes API endpoints with the HTTP meth
 - Authenticated users can like any post and remove the like later if they want to.
 - Any user can view published comments
 
-| HTTP   | URI        | Operation                     | View         | Comment |
-|--------|------------|-------------------------------|--------------|---------|
-| GET    | /likes/    | View all the Likes for a post | Article View |         |   
-| POST   | /likes/:id | Create a Like for a post      | Article View |         |
-| DELETE | /likes/:id | Delete a Like of a post       | Article View |         |
+| HTTP   | URI        | Operation                     | View         | Comment                   |
+|--------|------------|-------------------------------|--------------|---------------------------|
+| GET    | /likes/    | View all the Likes for a post | Article View |                           |   
+| POST   | /likes/:id | Create a Like for a post      | Article View | Authenticated user        |
+| DELETE | /likes/:id | Delete a Like of a post       | Article View | Authenticated user        |
 
 
 ### Reports (ContactUs) API
@@ -224,10 +224,10 @@ This section shows the API design for the Reports API endpoints with the HTTP me
 - Authenticated users can create a report through the contact us form.
 - Admin users can view reports
 
-| HTTP   | URI          | Operation                          | View            | Comment |
-|--------|--------------|------------------------------------|-----------------|---------|
-| GET    | /reports/    | View all the Contact Us for a post | Contact Us View |         |   
-| POST   | /reports/:id | Create a Contact Us                | Contact Us View |         |
+| HTTP   | URI          | Operation                          | View            | Comment           |
+|--------|--------------|------------------------------------|-----------------|-------------------|
+| GET    | /reports/    | View all the Contact Us for a post | Contact Us View | Admin user        |   
+| POST   | /reports/ | Create a Contact Us                | Contact Us View | Authenticated user   |
 
 ## Database Design
 
