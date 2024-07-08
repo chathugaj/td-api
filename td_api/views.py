@@ -23,7 +23,7 @@ def logout_route(request):
     response.set_cookie(
         key=JWT_AUTH_COOKIE,
         value='',
-        httponly=True,
+        httponly=False,
         expires='Thu, 01 Jan 1970 00:00:00 GMT',
         max_age=0,
         samesite=JWT_AUTH_SAMESITE,
@@ -32,7 +32,7 @@ def logout_route(request):
     response.set_cookie(
         key=JWT_AUTH_REFRESH_COOKIE,
         value='',
-        httponly=True,
+        httponly=False,
         expires='Thu, 01 Jan 1970 00:00:00 GMT',
         max_age=0,
         samesite=JWT_AUTH_SAMESITE,
